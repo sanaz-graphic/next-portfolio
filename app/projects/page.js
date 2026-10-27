@@ -1,4 +1,4 @@
-import Link from 'next/link';
+ import Link from 'next/link';
 
 export default function Projects() {
   const projects = [
@@ -9,7 +9,7 @@ export default function Projects() {
       link: 'https://sanaz-graphic.github.io/react-app/#/todo',
     },
     {
-      title: 'اپلیکیشن آب‌وهوا',
+      title: 'اپلیکیشن آب‌وهوا (React)',
       description: 'جستجوی آب‌وهوای هر شهر جهان با استفاده از API رایگان Open-Meteo.',
       tech: ['React', 'API', 'async/await'],
       link: 'https://sanaz-graphic.github.io/react-app/#/weather',
