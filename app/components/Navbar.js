@@ -29,6 +29,11 @@ export default function Navbar() {
               آب‌وهوا
             </Link>
           </li>
+          <li>
+  <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition">
+    تماس
+  </Link>
+</li>
         </ul>
       </div>
     </nav>
