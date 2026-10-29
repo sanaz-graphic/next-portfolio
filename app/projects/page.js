@@ -3,8 +3,8 @@
 export default function Projects() {
   const projects = [
     {
-      title: 'لیست کارها (Todo)',
-      description: 'یک اپلیکیشن برای مدیریت کارهای روزانه با قابلیت ذخیره‌سازی خودکار.',
+      title: 'لیست کارها (React)',
+      description: 'یک اپلیکیشن مدیریت کارها با قابلیت ذخیره‌سازی خودکار.',
       tech: ['React', 'Tailwind', 'localStorage'],
       link: 'https://sanaz-graphic.github.io/react-app/#/todo',
     },
@@ -14,6 +14,12 @@ export default function Projects() {
       tech: ['React', 'API', 'async/await'],
       link: 'https://sanaz-graphic.github.io/react-app/#/weather',
     },
+    {
+      title: 'وب‌سایت چندصفحه‌ای (Next.js)',
+      description: 'همین سایت فعلی که با Next.js و App Router ساخته شده است.',
+      tech: ['Next.js', 'Tailwind', 'React'],
+      link: '/',
+    }
   ];
 
   return (
@@ -45,14 +51,24 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-center bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-lg transition"
-              >
-                مشاهده دمو (در سایت React)
-              </a>
+              
+              {project.link.startsWith('/') ? (
+                <Link
+                  href={project.link}
+                  className="block text-center bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-lg transition"
+                >
+                  مشاهده در همین سایت
+                </Link>
+              ) : (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-lg transition"
+                >
+                  مشاهده دمو (سایت React)
+                </a>
+              )}
             </div>
           ))}
         </div>
