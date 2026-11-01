@@ -54,6 +54,18 @@ export default function Cart() {
                 جمع کل: {totalPrice.toLocaleString()} تومان
               </p>
             </div>
+           <div className="text-center mb-6">
+  <button
+    onClick={() => {
+      alert('از خرید شما متشکریم! سفارش شما با موفقیت ثبت شد.');
+      localStorage.removeItem('myShopCart');
+      window.location.href = '/';
+    }}
+    className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition"
+  >
+    ثبت سفارش
+  </button>
+</div> 
           </div>
         )}
 
