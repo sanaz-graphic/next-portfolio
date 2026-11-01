@@ -1,6 +1,6 @@
  'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function Shop() {
@@ -11,10 +11,18 @@ export default function Shop() {
     { id: 4, name: 'ماوس‌پد طراحی', price: 120000 },
   ]);
 
-  // State برای نگه داشتن سبد خرید (آرایه‌ای از محصولات)
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedCart = localStorage.getItem('myShopCart');
+      return savedCart ? JSON.parse(savedCart) : [];
+    }
+    return [];
+  });
 
-  // تابعی برای اضافه کردن محصول به سبد
+  useEffect(() => {
+    localStorage.setItem('myShopCart', JSON.stringify(cart));
+  }, [cart]);
+
   const addToCart = (product) => {
     setCart([...cart, product]);
   };
@@ -22,21 +30,17 @@ export default function Shop() {
   return (
     <main className="min-h-screen bg-gray-50 p-10">
       <div className="max-w-4xl mx-auto">
-        
-        {/* هدر صفحه با نمایش تعداد سبد خرید */}
         <div className="flex justify-between items-center mb-8 bg-white p-4 rounded-lg shadow-sm">
           <h1 className="text-2xl font-bold text-gray-800">فروشگاه من</h1>
           <div className="flex items-center gap-4">
             <Link href="/cart" className="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-1 rounded-full font-bold transition">
-  سبد خرید: {cart.length} مورد
-</Link> 
+              سبد خرید: {cart.length} مورد
+            </Link>
             <Link href="/" className="text-blue-500 hover:text-blue-700 text-sm">
               بازگشت
             </Link>
           </div>
         </div>
-
-        {/* لیست محصولات */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product) => (
             <div key={product.id} className="bg-white p-6 rounded-xl shadow-md text-center flex flex-col justify-between">
@@ -51,7 +55,6 @@ export default function Shop() {
             </div>
           ))}
         </div>
-        
       </div>
     </main>
   );
